@@ -14,9 +14,9 @@ rm -f feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
 wget -P feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal https://xiaomeng9597.github.io/terminal.htm
 
 #集成CPU性能跑分脚本
-cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
-chmod 755 package/base-files/files/bin/coremark
-chmod 755 package/base-files/files/bin/coremark.sh
+#cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
+#chmod 755 package/base-files/files/bin/coremark
+#chmod 755 package/base-files/files/bin/coremark.sh
 
 
 # 加入nsy_g68-plus初始化网络配置脚本
