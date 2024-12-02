@@ -11,8 +11,8 @@
 
 
 # 替换需要编译的内核版本
-sed -i -E 's/KERNEL_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_PATCHVER:=5.10/' target/linux/rockchip/Makefile
-sed -i -E 's/KERNEL_TESTING_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_TESTING_PATCHVER:=5.10/' target/linux/rockchip/Makefile
+# sed -i -E 's/KERNEL_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_PATCHVER:=5.10/' target/linux/rockchip/Makefile
+# sed -i -E 's/KERNEL_TESTING_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_TESTING_PATCHVER:=5.10/' target/linux/rockchip/Makefile
 
 rm -f feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
 wget -P feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal https://xiaomeng9597.github.io/terminal.htm
