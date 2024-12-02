@@ -992,7 +992,14 @@
 
 		io-domains {
 			compatible = "rockchip,rk3568-pmu-io-voltage-domain";
-			status = "disabled";
+			status = "okay";
+			pmuio2-supply = <0x115>;
+			vccio1-supply = <0x11a>;
+			vccio3-supply = <0x11a>;
+			vccio4-supply = <0x11a>;
+			vccio5-supply = <0x11a>;
+			vccio6-supply = <0x11a>;
+			vccio7-supply = <0x11a>;
 		};
 
 		reboot-mode {
@@ -4897,7 +4904,7 @@
 		phandle = <0xff>;
 	};
 
-	vcc_3v3 {
+	vcc-3v3 {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc_3v3";
 		regulator-always-on;
@@ -4905,6 +4912,7 @@
 		regulator-min-microvolt = <0x325aa0>;
 		regulator-max-microvolt = <0x325aa0>;
 		vin-supply = <0x114>;
+		phandle = <0x11a>;
 	};
 
 	vcc3v3-pcie {
