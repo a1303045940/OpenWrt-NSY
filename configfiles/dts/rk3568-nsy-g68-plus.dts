@@ -65,8 +65,21 @@
 		realtek,id = <29>;
 		phy-id = <29>;
 		cpu_port = <0x07>;
-		realtek,extif1 = <1 0 1 1 1 1 1 1 2>;
-		realtek,extif2 = <1 0 1 1 1 1 1 1 2>;
+
+		//======================================================
+		//对于主线op的设备树书写方式
+		//realtek,extif = <7 0 0 1 1 1 1 1 1 2>;
+		//======================================================
+
+		//延迟为0,否则网络很卡
+		//realtek,extif = <7 0 0 1 1 1 1 1 1 2>;
+		//realtek,extif1 = <7 0 0 1 1 1 1 1 1 2>;
+		//txdelay, rxdelay, mode, ability.force_mode, ability.txpause, ability.rxpause, ability.link, ability.duplex, speed
+
+		//sgmii,
+		realtek,extif1 = <0 0 11 1 1 1 1 1 2>;
+		//rgmii
+		realtek,extif2 = <0 0 1 1 1 1 1 1 2>;
 		status = "okay";
 	};
 
@@ -244,6 +257,22 @@
 		status = "okay";
 	};
 
+	vdd_gpu: vdd-gpu {
+		compatible = "pwm-regulator";
+		pwms = <&pwm2 0 5000 1>;
+		regulator-name = "vdd_gpu";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		regulator-init-microvolt = <900000>;
+		regulator-ramp-delay = <6001>;
+		regulator-initial-mode = <0x2>;
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-settling-time-up-us = <250>;
+		pwm-supply = <&vcc5v0_sys>;
+		status = "okay";
+	};
+
 	vcc_ddr: vcc-ddr {
 		regulator-always-on;
 		regulator-boot-on;
@@ -256,7 +285,7 @@
 
 	vdd_npu: vdd-npu {
 		compatible = "pwm-regulator";
-		pwms = <&pwm2 0 5000 1>;
+		pwms = <&pwm3 0 5000 1>;
 		regulator-name = "vdd_npu";
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1200000>;
@@ -288,6 +317,11 @@
 
 &dmc {
 	center-supply = <&vdd_logic>;
+	status = "okay";
+};
+
+&gpu {
+	mali-supply = <&vdd_gpu>;
 	status = "okay";
 };
 
