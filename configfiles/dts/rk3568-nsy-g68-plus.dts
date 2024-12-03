@@ -522,6 +522,10 @@ status = "okay";
 	};
 };
 
+&rng {
+	status = "okay";
+};
+
 &pmu_io_domains {
 	pmuio2-supply = <&vcc3v3_sys>;
 	vccio1-supply = <&vcc_3v3>;
