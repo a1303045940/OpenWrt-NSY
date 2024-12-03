@@ -8,8 +8,8 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pwm/pwm.h>
+#include <dt-bindings/input/input.h>
 #include <dt-bindings/pinctrl/rockchip.h>
-#include <dt-bindings/input/rk-input.h>
 #include "rk3568.dtsi"
 
 / {
@@ -285,7 +285,7 @@
 		pwm-supply = <&vcc5v0_sys>;
 		status = "okay";
 	};
-	
+
 	combphy1_usq: phy@fe830000 {
 		compatible = "rockchip,rk3568-naneng-combphy";
 		reg = <0x0 0xfe830000 0x0 0x100>;
@@ -543,25 +543,6 @@ status = "okay";
 
 &rng {
 	status = "okay";
-};
-
-&rockchip_suspend {
-	status = "okay";
-	rockchip,sleep-mode-config = <
-		(0
-		| RKPM_SLP_CENTER_OFF
-		| RKPM_SLP_HW_PLLS_OFF
-		| RKPM_SLP_PMUALIVE_32K
-		| RKPM_SLP_PMIC_LP
-		| RKPM_SLP_32K_PVTM
-		)
-	>;
-	rockchip,wakeup-config = <
-		(0
-		| RKPM_PWM0_WKUP_EN
-		| RKPM_CPU0_WKUP_EN
-		)
-	>;
 };
 
 &pmu_io_domains {
