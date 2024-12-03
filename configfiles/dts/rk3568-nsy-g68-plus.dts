@@ -272,38 +272,6 @@
 		status = "okay";
 	};
 
-	combphy1_usq: phy@fe830000 {
-		compatible = "rockchip,rk3568-naneng-combphy";
-		reg = <0x0 0xfe830000 0x0 0x100>;
-		#phy-cells = <1>;
-		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
-			 <&cru PCLK_PIPE>;
-		clock-names = "refclk", "apbclk", "pipe_clk";
-		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-		assigned-clock-rates = <100000000>;
-		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
-		reset-names = "combphy-apb", "combphy";
-		rockchip,pipe-grf = <&pipegrf>;
-		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-		status = "disabled";
-	};
-
-	combphy2_psq: phy@fe840000 {
-		compatible = "rockchip,rk3568-naneng-combphy";
-		reg = <0x0 0xfe840000 0x0 0x100>;
-		#phy-cells = <1>;
-		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
-			 <&cru PCLK_PIPE>;
-		clock-names = "refclk", "apbclk", "pipe_clk";
-		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-		assigned-clock-rates = <100000000>;
-		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
-		reset-names = "combphy-apb", "combphy";
-		rockchip,pipe-grf = <&pipegrf>;
-		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-		status = "disabled";
-	};
-
 	xpcs: syscon@fda00000 {
 		compatible = "rockchip,rk3568-xpcs", "syscon";
 		reg = <0x0 0xfda00000 0x0 0x200000>;
@@ -376,15 +344,6 @@
 	status = "okay";
 };
 
-&combphy1_usq {
-	rockchip,sgmii-mac-sel = <1>;
-	status = "okay";
-};
-
-&combphy2_psq {
-	status = "okay";
-};
-
 &pwm0 {
 	status = "okay";
 	pinctrl-names = "active";
@@ -445,7 +404,6 @@
 		     &gmac1m1_rgmii_clk
 		     &gmac1m1_rgmii_bus>;
      power-domains = <&power RK3568_PD_PIPE>;
-     phys = <&combphy1_usq PHY_TYPE_SGMII>;
 
 	fixed-link {
 		speed = <1000>;
@@ -579,6 +537,7 @@ status = "okay";
 
 &usb_host0_xhci {
 	dr_mode = "host";
+	extcon = <&usb2phy0>;
 	status = "okay";
 };
 
