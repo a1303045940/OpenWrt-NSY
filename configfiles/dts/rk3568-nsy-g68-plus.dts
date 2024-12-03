@@ -108,20 +108,6 @@
 		regulator-max-microvolt = <12000000>;
 	};
 
-	reserved-memory {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		ranges;
-
-		rknpu_reserved: rknpu {
-			compatible = "shared-dma-pool";
-			inactive;
-			reusable;
-			size = <0x0 0x20000000>;
-			alignment = <0x0 0x1000>;
-		};
-	};
-
 	vcc3v3_sys: vcc3v3-sys {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc3v3_sys";
@@ -299,7 +285,7 @@
 		reset-names = "combphy-apb", "combphy";
 		rockchip,pipe-grf = <&pipegrf>;
 		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-		status = "okay";
+		status = "disabled";
 	};
 
 	combphy2_psq: phy@fe840000 {
@@ -315,7 +301,13 @@
 		reset-names = "combphy-apb", "combphy";
 		rockchip,pipe-grf = <&pipegrf>;
 		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-		status = "okay";
+		status = "disabled";
+	};
+
+	xpcs: syscon@fda00000 {
+		compatible = "rockchip,rk3568-xpcs", "syscon";
+		reg = <0x0 0xfda00000 0x0 0x200000>;
+		status = "disabled";
 	};
 };
 
@@ -416,7 +408,7 @@ status = "okay";
 };
 
 &mdio1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &pcie30phy {
@@ -463,44 +455,12 @@ status = "okay";
 		};
 	};
 
-	rtl83xx_switches {
-		rtl8367s_switch0_int: switch0-int {
-			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-	};
-
 	leds {
 		led_power_en: led-power-en {
 			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 };
-
-#if 0
-&reserved_memory {
-	linux,cma {
-		compatible = "shared-dma-pool";
-		inactive;
-		reusable;
-		reg = <0x0 0x10000000 0x0 0x00800000>;
-		linux,cma-default;
-	};
-
-	ramoops: ramoops@110000 {
-		compatible = "ramoops";
-		reg = <0x0 0x110000 0x0 0xf0000>;
-		record-size = <0x20000>;
-		console-size = <0x80000>;
-		ftrace-size = <0x00000>;
-		pmsg-size = <0x50000>;
-	};
-
-	vendor_storage_rm: vendor-storage-rm@00000000 {
-		compatible = "rockchip,vendor-storage-rm";
-		reg = <0x0 0x0 0x0 0x0>;
-	};
-};
-#endif
 
 &sdhci {
 	bus-width = <8>;
@@ -541,10 +501,6 @@ status = "okay";
 	};
 };
 
-&rng {
-	status = "okay";
-};
-
 &pmu_io_domains {
 	pmuio2-supply = <&vcc3v3_sys>;
 	vccio1-supply = <&vcc_3v3>;
@@ -556,78 +512,20 @@ status = "okay";
 	status = "okay";
 };
 
-&vop {
-	status = "disabled";
-};
-
-&mpp_srv {
+&uart2 {
 	status = "okay";
 };
 
-&rk_rga {
+&usb_host0_xhci {
+	dr_mode = "host";
 	status = "okay";
 };
 
-&rknpu {
-	rknpu-supply = <&vdd_npu>;
-	mem-supply = <&vdd_npu>;
+&usb_host0_ohci {
 	status = "okay";
 };
 
-&rknpu_mmu {
-	status = "okay";
-};
-
-&vdpu {
-	status = "okay";
-};
-
-&vdpu_mmu {
-	status = "okay";
-};
-
-&jpegd {
-	status = "okay";
-};
-
-&jpegd_mmu {
-	status = "okay";
-};
-
-&vepu {
-	status = "okay";
-};
-
-&vepu_mmu {
-	status = "okay";
-};
-
-&iep {
-	status = "disabled";
-};
-
-&rkvenc {
-	venc-supply = <&vdd_logic>;
-	status = "okay";
-};
-
-&rkvenc_mmu {
-	status = "okay";
-};
-
-&rkvdec {
-	status = "okay";
-};
-
-&rkvdec_mmu {
-	status = "okay";
-};
-
-&u2phy0_host {
-	status = "okay";
-};
-
-&u2phy0_otg {
+&usb_host0_ehci {
 	status = "okay";
 };
 
@@ -635,21 +533,11 @@ status = "okay";
 	status = "okay";
 };
 
-&usbdrd_dwc3 {
-	dr_mode = "host";
-	extcon = <&usb2phy0>;
+&usb2phy0_host {
 	status = "okay";
 };
 
-&usbdrd30 {
-	status = "okay";
-};
-
-&usbhost_dwc3 {
-	status = "okay";
-};
-
-&usbhost30 {
+&usb2phy0_otg {
 	status = "okay";
 };
 
