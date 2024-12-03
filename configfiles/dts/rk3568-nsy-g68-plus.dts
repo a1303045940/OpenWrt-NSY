@@ -23,7 +23,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
+		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 rootwait";
 	};
 
 	fiq-debugger {
@@ -470,6 +470,8 @@ status = "okay";
 	non-removable;
 	max-frequency = <200000000>;
 	full-pwr-cycle-in-suspend;
+	pinctrl-names = "default";
+	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
 	status = "okay";
 };
 
