@@ -19,7 +19,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
+		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 rootwait";
 	};
 
 	fiq-debugger {
@@ -76,8 +76,6 @@
 		regulator-min-microvolt = <12000000>;
 		regulator-max-microvolt = <12000000>;
 	};
-
-
 
 	vcc3v3_sys: regulator-vcc3v3-sys {
 		compatible = "regulator-fixed";
@@ -182,13 +180,13 @@
 		reg = <0x1c>;
 		fcs,suspend-voltage-selector = <1>;
 		regulator-name = "vdd_cpu";
+		regulator-always-on;
+		regulator-boot-on;
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1400000>;
 		regulator-init-microvolt = <1150000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
-		regulator-always-on;
-		regulator-boot-on;
 		vin-supply = <&vcc5v0_sys>;
 
 		regulator-state-mem {
@@ -597,6 +595,12 @@ status = "okay";
 
 		vcc5v0_usb_otg_en: vcc5v0-usb-otg-en {
 			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	rtl83xx_switches {
+		rtl8367s_switch0_int: switch0-int {
+			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 };
