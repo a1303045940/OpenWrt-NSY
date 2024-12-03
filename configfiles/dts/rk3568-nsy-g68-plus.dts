@@ -312,6 +312,7 @@
 };
 
 &combphy1 {
+	rockchip,sgmii-mac-sel = <1>;
 	status = "okay";
 };
 
@@ -404,6 +405,7 @@
 		     &gmac1m1_rgmii_clk
 		     &gmac1m1_rgmii_bus>;
      power-domains = <&power RK3568_PD_PIPE>;
+     phys = <&combphy1 PHY_TYPE_SGMII>;
 
 	fixed-link {
 		speed = <1000>;
