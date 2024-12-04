@@ -614,7 +614,7 @@
 	};*/
 };
 
-&pinctrl{
+&pinctrl {
 	usb {
 		vcc5v0_host_en: vcc5v0-host-en {
 			rockchip,pins = <0 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
@@ -680,7 +680,7 @@
 		};
 	};
 
-	gmac-reset{ 
+	gmac-reset {
 		gmac0_reset: gmac0-reset {
 			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
@@ -1063,7 +1063,7 @@
 	status = "okay";
 };
 
-&i2c5{
+&i2c5 {
 	status = "disabled";
 };
 
