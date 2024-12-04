@@ -716,7 +716,6 @@
 	mem-supply = <&vdd_cpu>;
 };
 
-//不知道瞎复制
 &tsadc {
 	rockchip,hw-tshut-mode = <1>;
 	rockchip,hw-tshut-polarity = <0>;
