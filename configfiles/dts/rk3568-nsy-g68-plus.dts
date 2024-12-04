@@ -374,7 +374,6 @@
 			status = "okay";
 		};
 
-		/*
 		pinctrl_rk8xx {
 			gpio-controller;
 			#gpio-cells = <2>;
@@ -398,7 +397,7 @@
 				pins = "gpio_slp";
 				function = "pin_fun3";
 			};
-		};*/
+		};
 
 		regulators {
 
@@ -741,7 +740,6 @@
 // 不然开启就挂死,更换版本:https://github.com/Kwiboo/u-boot-rockchip
 // https://lists.denx.de/pipermail/u-boot/2023-August/525793.html
 // 这个pcie,可能需要打补丁,使用radxa 版本
-//
 &pcie3x1 {
         vpcie3v3-supply = <&vcc3v3_pcie>;
         reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
