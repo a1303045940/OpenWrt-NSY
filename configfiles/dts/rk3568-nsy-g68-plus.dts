@@ -1022,10 +1022,6 @@
 	status = "okay";
 };
 
-&combphy2 {
-	status = "okay";
-};
-
 &csi_dphy {
 	status = "okay";
 };
