@@ -321,10 +321,10 @@
 		keyup-threshold-microvolt = <1800000>;
 		poll-interval = <100>;
 		status = "okay";
-		recovery-key {
+		button-recovery {
 			label = "Reset";
 			linux,code = <KEY_RESTART>;
-			press-threshold-microvolt = <1500000>;
+			press-threshold-microvolt = <1800>;
 		};
 	};
 
