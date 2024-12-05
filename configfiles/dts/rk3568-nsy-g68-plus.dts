@@ -374,8 +374,7 @@
 			status = "okay";
 		};
 
-		/*
-		pinctrl_rk8xx {
+		pinctrl_rk8xx: pinctrl_rk8xx {
 			gpio-controller;
 			#gpio-cells = <2>;
 
@@ -398,7 +397,7 @@
 				pins = "gpio_slp";
 				function = "pin_fun3";
 			};
-		};*/
+		};
 
 		regulators {
 
