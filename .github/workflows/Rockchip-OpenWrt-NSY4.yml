@@ -8,7 +8,7 @@ on:
 env:
   REPO_URL: https://github.com/xiaomeng9597/lede
   REPO_BRANCH: master
-  CONFIG_FILE: configs/armv8-nsy2.config
+  CONFIG_FILE: configs/armv8-nsy3.config
   DIY_SCRIPT: diy-mini2.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
