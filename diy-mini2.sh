@@ -71,9 +71,9 @@ rm -f feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal/terminal.htm
 wget -P feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal https://xiaomeng9597.github.io/terminal.htm
 
 #集成CPU性能跑分脚本
-#cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
-#chmod 755 package/base-files/files/bin/coremark
-#chmod 755 package/base-files/files/bin/coremark.sh
+cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
+chmod 755 package/base-files/files/bin/coremark
+chmod 755 package/base-files/files/bin/coremark.sh
 
 
 # 加入nsy_g68-plus初始化网络配置脚本
@@ -82,6 +82,11 @@ chmod 755 package/base-files/files/etc/init.d/swconfig_install
 
 cp -f $GITHUB_WORKSPACE/configfiles/dts/rk3568-nsy-g68-plus.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-nsy-g68-plus.dts
 cp -f $GITHUB_WORKSPACE/configfiles/dts/rk3568-nsy-g16-plus.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-nsy-g16-plus.dts
+
+# 集成 nsy_g68-plus WiFi驱动
+mkdir -p package/base-files/files/lib/firmware/mediatek
+cp -f $GITHUB_WORKSPACE/configfiles/mt7915_eeprom.bin package/base-files/files/lib/firmware/mediatek/mt7915_eeprom.bin
+cp -f $GITHUB_WORKSPACE/configfiles/mt7916_eeprom.bin package/base-files/files/lib/firmware/mediatek/mt7916_eeprom.bin
 
 # 电工大佬的rtl8367b驱动资源包，暂时使用这样替换
 wget https://github.com/xiaomeng9597/files/releases/download/files/rtl8367b.tar.gz
