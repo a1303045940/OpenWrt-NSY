@@ -7,7 +7,11 @@
 #include <dt-bindings/leds/common.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/pinctrl/rockchip.h>
+#ifdef DTS_NO_LEGACY
 #include <dt-bindings/soc/rockchip,vop2.h>
+#else
+#include <dt-bindings/display/rockchip_vop.h>
+#endif
 #include "rk3568.dtsi"
 
 / {
@@ -741,19 +745,19 @@
 // https://lists.denx.de/pipermail/u-boot/2023-August/525793.html
 // 这个pcie,可能需要打补丁,使用radxa 版本
 &pcie3x1 {
-        vpcie3v3-supply = <&vcc3v3_pcie>;
-        reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+		vpcie3v3-supply = <&vcc3v3_pcie>;
+		reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
 		rockchip,bifurcation;
 		num-lanes = <0x1>; /*可能不生效,但是拆分需要打补丁,如果是吧,打补丁*/
 		pinctrl-0 = <&pcie30x1_reset_h>;
-        status = "okay";
+		status = "okay";
 };
 
 //fe280000
 &pcie3x2 {
-        vpcie3v3-supply = <&vcc3v3_pcie>;
-        reset-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-        status = "okay";
+		vpcie3v3-supply = <&vcc3v3_pcie>;
+		reset-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
+		status = "okay";
 		rockchip,bifurcation;
 		num-lanes = <0x1>;
 		pinctrl-0 = <&pcie30x2_reset_h>;
@@ -761,12 +765,12 @@
 
 &pcie30phy {
 		data-lanes = <1 2>; //配置lan的通道树
-        status = "okay";
+		status = "okay";
 };
 
 //使能pcie 2.0x1 phy
 &combphy2 { //combphy2 kernel name
-        status = "okay";
+		status = "okay";
 };
 
 &pcie2x1 {
@@ -774,7 +778,7 @@
 		pinctrl-0 = <&pcie2x1_reset_h>;
 		//for kernel.dts
 		rockchip,perst-inactive-ms = <500>;
-        status = "okay";
+		status = "okay";
 };
 
 &mdio0 {
@@ -960,6 +964,10 @@
 	status = "okay";
 };
 
+&dfi {
+	status = "okay";
+};
+
 &gpu {
 	mali-supply = <&vdd_gpu>;
 	status = "okay";
@@ -995,6 +1003,7 @@
 	status = "okay";
 };
 
+//dwmmc@fe000000
 &sdmmc2 {
 	max-frequency = <150000000>;
 	fifo-depth = <256>;
@@ -1028,10 +1037,6 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
 	status = "disabled";
-};
-
-&csi_dphy {
-	status = "okay";
 };
 
 &combphy0 {
