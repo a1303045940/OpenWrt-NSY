@@ -152,7 +152,6 @@
 		pinctrl-0 = <&wifi_enable_h>;
 		post-power-on-delay-ms = <200>;
 		reset-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_LOW>;
-		status = "disabled";
 	};
 
 	vcc1v8_adc: vcc1v8-adc {
