@@ -984,6 +984,7 @@
 	cap-sdio-irq;
 	keep-power-in-suspend;
 	sd-uhs-sdr104;
+	mmc-pwrseq = <&sdio_pwrseq>;
 	non-removable;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_cmd &sdmmc2m0_clk>;
