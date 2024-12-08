@@ -58,6 +58,9 @@ date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by xiaomeng9597/g" package/lean/default-settings/files/zzz-default-settings
 
+# 默认不开启WiFi
+sed -i "s/wireless.radio\${devidx}.disabled=0/wireless.radio\${devidx}.disabled=1/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
 # 替换需要编译的内核版本
 # sed -i -E 's/KERNEL_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_PATCHVER:=5.15/' target/linux/rockchip/Makefile
 # sed -i -E 's/KERNEL_TESTING_PATCHVER:=[0-9]+\.[0-9]+/KERNEL_TESTING_PATCHVER:=5.15/' target/linux/rockchip/Makefile
@@ -69,7 +72,6 @@ wget -P feeds/luci/applications/luci-app-ttyd/luasrc/view/terminal https://xiaom
 cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/sbin/
 chmod 755 package/base-files/files/sbin/coremark
 chmod 755 package/base-files/files/sbin/coremark.sh
-
 
 # 加入nsy_g68-plus初始化网络配置脚本
 cp -f $GITHUB_WORKSPACE/configfiles/swconfig_install package/base-files/files/etc/init.d/swconfig_install
