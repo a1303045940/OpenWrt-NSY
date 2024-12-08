@@ -58,6 +58,9 @@ date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by xiaomeng9597/g" package/lean/default-settings/files/zzz-default-settings
 
+# 取消主题默认设置
+find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
+
 # 默认不开启WiFi
 sed -i "s/wireless.radio\${devidx}.disabled=0/wireless.radio\${devidx}.disabled=1/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
