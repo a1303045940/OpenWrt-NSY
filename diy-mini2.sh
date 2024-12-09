@@ -40,6 +40,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 git_sparse_clone main https://github.com/xiaomeng9597/openwrt-theme luci-theme-design
 
 # 更改 Argon 主题背景
+mkdir -p package/luci-theme-argon/htdocs/luci-static/argon/img
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # iStore
