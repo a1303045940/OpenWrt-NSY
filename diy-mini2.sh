@@ -19,14 +19,19 @@ rm -rf feeds/luci/applications/luci-app-netdata
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  echo "打印1"$repodir
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  echo "打印"$repodir
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
+    branch="$1"
+    repourl="$2"
+    shift 2
+    # 创建一个临时目录进行克隆
+    tempdir=$(mktemp -d)
+    trap 'rm -rf "$tempdir"' EXIT # 确保脚本退出时删除临时目录
+    # 稀疏克隆指定分支
+    git clone --depth=1 -b "$branch" --single-branch --filter=blob:none --sparse "$repourl" "$tempdir"
+    # 进入克隆的仓库并设置稀疏检出
+    cd "$tempdir" || exit
+    git sparse-checkout set "$@"
+    # 将检出的文件移动到上级目录的package文件夹
+    mv -f "$@" ../package/
 }
 
 
