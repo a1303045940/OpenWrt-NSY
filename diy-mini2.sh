@@ -22,15 +22,32 @@ function git_sparse_clone() {
   branch="$1"
   repourl="$2"
   shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  echo "打印1"$repodir
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  echo "打印"$repodir
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
-}
 
+  # 克隆仓库
+  if ! git clone --depth=1 -b "$branch" --single-branch --filter=blob:none --sparse "$repourl" "$(basename "$repourl" .git)"; then
+    echo "Error: Failed to clone repository from $repourl"
+    return 1
+  fi
+
+  # 进入克隆的仓库目录
+  repodir=$(basename "$repourl" .git)
+  cd "$repodir" || { echo "Error: Failed to change directory to $repodir"; return 1; }
+
+  # 设置稀疏检出
+  if ! git sparse-checkout set "$@"; then
+    echo "Error: Failed to set sparse checkout for paths: $@"
+    cd ..
+    rm -rf "$repodir"
+    return 1
+  fi
+
+  # 将检出的文件移动到../package目录
+  mv -f "$@" ../package/
+
+  # 清理：回到上一级目录并删除克隆的仓库目录
+  cd ..
+  rm -rf "$repodir"
+}
 
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
