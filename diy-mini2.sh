@@ -36,7 +36,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 # git clone --depth=1 https://github.com/kenzok78/luci-theme-design package/luci-theme-design
 # git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-opentomcat
-git_sparse_clone master https://github.com/coolsnowwolf/luci /themes/luci-theme-design
+git_sparse_clone master https://github.com/coolsnowwolf/luci themes/luci-theme-design
 
 # 更改 Argon 主题背景
 mkdir -p package/luci-theme-argon/htdocs/luci-static/argon/img
