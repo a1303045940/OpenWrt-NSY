@@ -19,12 +19,32 @@ rm -rf feeds/luci/applications/luci-app-netdata
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
+  branch="$1"
+  repourl="$2"
+  shift 2
+  # 克隆仓库
+  if ! git clone --depth=1 -b "$branch" --single-branch --filter=blob:none --sparse "$repourl" "$(basename "$repourl" .git)"; then
+    echo "Error: Failed to clone repository from $repourl"
+    return 1
+  fi
+  # 进入克隆的仓库目录
+  repodir=$(basename "$repourl" .git)
+  ls "$repodir"
+  
+  cd "$repodir" || { echo "Error: Failed to change directory to $repodir"; return 1; }
+  # 设置稀疏检出
+  if ! git sparse-checkout set "$@"; then
+    echo "Error: Failed to set sparse checkout for paths: $@"
+    cd ..
+    rm -rf "$repodir"
+    return 1
+  fi
+  # 将检出的文件移动到../package目录
+  mv -f "$@" ../package/
+  ls ../package/$repodir
+  # 清理：回到上一级目录并删除克隆的仓库目录
+  cd ..
+  rm -rf "$repodir"
 }
 
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
@@ -34,9 +54,10 @@ git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-a
 # git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 # git clone --depth=1 https://github.com/kenzok78/luci-theme-design package/luci-theme-design
-git clone --depth=1 https://github.com/xiaomeng9597/luci-theme-design package/luci-theme-design
+# git clone --depth=1 https://github.com/xiaomeng9597/luci-theme-design package/luci-theme-design
 # git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-opentomcat
+git_sparse_clone main https://github.com/xiaomeng9597/openwrt-theme luci-theme-design
 
 # 更改 Argon 主题背景
 mkdir -p package/luci-theme-argon/htdocs/luci-static/argon/img
