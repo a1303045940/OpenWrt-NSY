@@ -39,8 +39,10 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 git_sparse_clone master https://github.com/coolsnowwolf/luci themes/luci-theme-design
 
 # 更改 Argon 主题背景
-mkdir -p package/luci-theme-argon/htdocs/luci-static/argon/img
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+rm -rf feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/*
+cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+# mkdir -p package/luci-theme-argon/htdocs/luci-static/argon/img
+# cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
