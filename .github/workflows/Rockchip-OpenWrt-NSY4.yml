@@ -147,6 +147,11 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_SCRIPT
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
+        ztdir="$PWD"
+        cat ./feeds/luci.index
+        ls ./feeds/luci/themes
+        cat feeds/luci/luci.index
+        ls feeds/luci/themes
 
     - name: Download DL Package
       run: |
