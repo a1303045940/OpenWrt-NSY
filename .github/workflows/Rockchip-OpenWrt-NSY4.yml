@@ -148,12 +148,14 @@ jobs:
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
         ztdir="$PWD"
-        cat ./feeds/luci.index
+        # cat ./feeds/luci.index
         ls ./feeds/luci/themes
         # cat feeds/luci/luci.index
         # ls feeds/luci/themes
         lucidata=$(cat ${GITHUB_WORKSPACE}/configfiles/design-index.txt)
         echo "$lucidata" >> ./feeds/luci.index
+        ls ./feeds/luci/themes
+        cat ./feeds/luci.index
 
     - name: Download DL Package
       run: |
