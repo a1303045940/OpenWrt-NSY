@@ -12,7 +12,7 @@
 
 
 # rm -rf feeds/luci/themes/luci-theme-argon
-# rm -rf feeds/luci/themes/luci-theme-design
+rm -rf feeds/luci/themes/luci-theme-design
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-netdata
 
@@ -66,7 +66,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 # git clone --depth=1 https://github.com/kenzok78/luci-theme-design package/luci-theme-design
 # git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-opentomcat
-# merge_package master https://github.com/coolsnowwolf/luci feeds/luci/themes themes/luci-theme-design
+merge_package master https://github.com/coolsnowwolf/luci feeds/luci/themes themes/luci-theme-design
 
 # 更改 Argon 主题背景
 rm -rf feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/*
