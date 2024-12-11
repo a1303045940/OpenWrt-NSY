@@ -58,6 +58,7 @@ function git_sparse_clone() {
 
 
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+git clone --depth=1 https://github.com/xiaomeng9597/luci-theme-design package/luci-theme-design
 
 # Themes
 # git clone --depth=1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
@@ -66,7 +67,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 # git clone --depth=1 https://github.com/kenzok78/luci-theme-design package/luci-theme-design
 # git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-opentomcat
-merge_package master https://github.com/coolsnowwolf/luci feeds/luci/themes themes/luci-theme-design
+# merge_package master https://github.com/coolsnowwolf/luci feeds/luci/themes themes/luci-theme-design
 
 # 更改 Argon 主题背景
 rm -rf feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/*
