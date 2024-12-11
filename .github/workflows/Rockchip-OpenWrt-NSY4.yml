@@ -152,7 +152,7 @@ jobs:
         ls ./feeds/luci/themes
         # cat feeds/luci/luci.index
         # ls feeds/luci/themes
-        lucidata=$(cat ${GITHUB_WORKSPACE}/configfiles/design-luci.txt)
+        lucidata=$(cat ${GITHUB_WORKSPACE}/configfiles/design-index.txt)
         echo "lucidata" >> ./feeds/luci.index
 
     - name: Download DL Package
