@@ -56,7 +56,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-
+sed -i 's/github.com\/coolsnowwolf\/luci.git;openwrt-23.05/github.com\/xiaomeng9597\/luci.git;openwrt-23.05/g' feeds.conf.default
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git clone --depth=1 https://github.com/xiaomeng9597/luci-theme-design package/luci-theme-design
 
