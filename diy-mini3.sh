@@ -133,11 +133,6 @@ chmod 755 package/base-files/files/etc/init.d/swconfig_install
 cp -f $GITHUB_WORKSPACE/configfiles/dts/rk3568-nsy-g68-plus.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-nsy-g68-plus.dts
 cp -f $GITHUB_WORKSPACE/configfiles/dts/rk3568-nsy-g16-plus.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-nsy-g16-plus.dts
 
-# 集成 nsy_g68-plus WiFi驱动
-mkdir -p package/base-files/files/lib/firmware/mediatek
-cp -f $GITHUB_WORKSPACE/configfiles/mt7915_eeprom.bin package/base-files/files/lib/firmware/mediatek/mt7915_eeprom.bin
-cp -f $GITHUB_WORKSPACE/configfiles/mt7916_eeprom.bin package/base-files/files/lib/firmware/mediatek/mt7916_eeprom.bin
-
 # 电工大佬的rtl8367b驱动资源包，暂时使用这样替换
 wget https://github.com/xiaomeng9597/files/releases/download/files/rtl8367b.tar.gz
 tar -xvf rtl8367b.tar.gz
