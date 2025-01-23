@@ -181,6 +181,13 @@ jobs:
         name: ${{ env.SOURCE_REPO }}-bin-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
         path: ${{ env.OPENWRT_PATH }}/bin
 
+    - name: Modify Uboot Image
+      run: |
+        df -hT
+        cd $OPENWRT_PATH/bin/targets/rockchip/armv8
+        chmod +x $GITHUB_WORKSPACE/scripts/modify-uboot-image.sh
+        $GITHUB_WORKSPACE/scripts/modify-uboot-image.sh
+
     - name: Organize Files
       if: steps.compile.outputs.status == 'success'
       run: |
