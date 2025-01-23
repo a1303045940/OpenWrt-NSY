@@ -15,8 +15,8 @@
 #include "rk3568.dtsi"
 
 / {
-	model = "NSY-G16 AX3000 Router";
-	compatible = "nsy,g16-plus", "rockchip,rk3568";
+	model = "BDY-G18 AX3000 Router";
+	compatible = "bdy,g18-pro", "rockchip,rk3568";
 
 	aliases {
 		ethernet0 = &gmac0;
