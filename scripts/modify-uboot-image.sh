@@ -29,6 +29,8 @@ dd if=$GITHUB_WORKSPACE/configfiles/rk3568-6.x-uboot.img of=openwrt-rockchip-arm
 
 gzip openwrt-rockchip-armv8-bdy_g18-pro-squashfs-sysupgrade.img
 
+sha256sum * > sha256sums
+
 echo "修改镜像成功"
 
 ls
