@@ -184,7 +184,7 @@ jobs:
     - name: Modify Uboot Image
       run: |
         df -hT
-        cd $OPENWRT_PATH/bin/targets/rockchip/armv8
+        cd $OPENWRT_PATH/bin/targets/*/*
         chmod +x $GITHUB_WORKSPACE/scripts/modify-uboot-image.sh
         $GITHUB_WORKSPACE/scripts/modify-uboot-image.sh
 
